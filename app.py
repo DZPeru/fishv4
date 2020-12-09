@@ -14,6 +14,8 @@ def run():
     threshold = 0.40
 
     st.title("Fishv4[tiny] Demo 2020")
+    st.text("Repo from: https://fishv4.herokuapp.com/")
+    st.text("More info: https://github.com/DZPeru/fishv4")
 
     uploaded_img = st.file_uploader("Elige una imagen compatible", type=[
                                     'png', 'jpg', 'bmp', 'jpeg'])
