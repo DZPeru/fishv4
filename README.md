@@ -1,4 +1,4 @@
-# fishv4 - Fish segmentation
+# Fishv4 - Fish segmentation
 
 Fish detection and segmentation based on YOLOv3 that use GrabCut to do semantic segmentation to fish market images.
 
