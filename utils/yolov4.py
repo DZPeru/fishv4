@@ -22,8 +22,8 @@ def runYOLODetection(args):
     # derive the paths to the YOLO weights and model configuration
     weightsPath = os.path.sep.join([args["fishv4"], "fish.weights"])
     configPath = os.path.sep.join([args["fishv4"], "fish_test.cfg"])
-    #weightsPath = os.path.sep.join([args["fishv4"], "yolov3.weights"])
-    #configPath = os.path.sep.join([args["fishv4"], "yolov3.cfg"])
+    #weightsPath = os.path.sep.join([args["fishv4"], "yolov4.weights"])
+    #configPath = os.path.sep.join([args["fishv4"], "yolov4.cfg"])
 
     # load my YOLO object detector trained on my fish dataset (1 class)
     print("[INFO] loading YOLO from disk ...")
@@ -127,8 +127,8 @@ def runYOLOBoundingBoxes(args):
     # derive the paths to the YOLO weights and model configuration
     weightsPath = os.path.sep.join([args["fishv4"], "fish.weights"])
     configPath = os.path.sep.join([args["fishv4"], "fish_test.cfg"])
-    #weightsPath = os.path.sep.join([args["fishv4"], "yolov3.weights"])
-    #configPath = os.path.sep.join([args["fishv4"], "yolov3.cfg"])
+    #weightsPath = os.path.sep.join([args["fishv4"], "yolov4.weights"])
+    #configPath = os.path.sep.join([args["fishv4"], "yolov4.cfg"])
 
     # load my YOLO object detector trained on my fish dataset (1 class)
     print("[INFO] loading YOLO from disk ...")
@@ -292,8 +292,8 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--image", required=True, help="path to input image")
     ap.add_argument("-y", "--yolo", required=True, help="base path to YOLO directory")
-    ap.add_argument("-c", "--confidence", type=float, default=0.25, help="minimum probability to filter weak detections")
-    ap.add_argument("-t", "--threshold", type=float, default=0.45, help="threshold when applying non-maxima suppression")
+    ap.add_argument("-c", "--confidence", type=float, default=0.30, help="minimum probability to filter weak detections")
+    ap.add_argument("-t", "--threshold", type=float, default=0.40, help="threshold when applying non-maxima suppression")
     args = vars(ap.parse_args())
 
     image = runYOLODetection(args)

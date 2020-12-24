@@ -1,11 +1,13 @@
 #!/usr/bin/python
 
 import cv2 as cv
-from utils import yolov4 as yolo
-from utils import GrabCut
 import numpy as np
 import pandas as pd
 import streamlit as st
+
+from utils import yolov4 as yolo
+from utils import GrabCut
+from utils.draw_rectanges import draw_rectangles
 
 
 def run():
@@ -29,9 +31,16 @@ def run():
         boxes, idxs = yolo.runYOLOBoundingBoxes_streamlit(image, yolopath, confidence, threshold)
         st.write(pd.DataFrame.from_dict({'confidence' : [confidence],
                                         'threshold' : [threshold],
-                                        'Boxes': [len(boxes)],
-                                        'idxs': [len(idxs)],}))
+                                        'Encontrados (Boxes)': [len(boxes)],
+                                        'Válidos (idxs)': [len(idxs)],}))
         result_images = GrabCut.runGrabCut(image, boxes, idxs)
+
+
+        st.write("Here appears the rectangles that the algorithm recognize:")
+        
+        img_mod=draw_rectangles(image,boxes,idxs)
+
+        st.image(img_mod, channels="BGR", use_column_width=True)
 
         st.write("")
         st.write("finish grabcut")
