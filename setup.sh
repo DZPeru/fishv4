@@ -10,4 +10,4 @@ bash -c 'echo -e "\
 enableCORS = false\n\
 " > ~/.streamlit/config.toml'
 
-gdown --output ./fishv4/fish.weights --id 1vosRfnj3DBkZYFrzJep5_D1DV-0b6Tpv
+gdown --output ./fishv4/fish.weights --id 1_Uo_jB4ZVsBRA7I3MLisq_GZ8EQHeWr9
