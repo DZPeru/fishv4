@@ -9,7 +9,7 @@ Trained by [FISH9003](https://github.com/DZPeru/fish-datasets)
 
 ## Web version
 
-You can try clicking [here](https://fishv4.herokuapp.com/)
+You can see the DEMO [here](https://fishv4.herokuapp.com/)
 
 ## Docker version
 
