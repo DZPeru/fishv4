@@ -7,7 +7,7 @@ import streamlit as st
 
 from utils import yolov4 as yolo
 from utils import GrabCut
-from utils.draw_rectanges import draw_rectangles
+from utils.draw_rectangles import draw_rectangles
 
 
 def run():
@@ -35,11 +35,8 @@ def run():
                                         'Válidos (idxs)': [len(idxs)],}))
         result_images = GrabCut.runGrabCut(image, boxes, idxs)
 
-
         st.write("Here appears the rectangles that the algorithm recognize:")
-        
         img_mod=draw_rectangles(image,boxes,idxs)
-
         st.image(img_mod, channels="BGR", use_column_width=True)
 
         st.write("")

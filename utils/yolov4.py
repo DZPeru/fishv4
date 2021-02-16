@@ -6,6 +6,7 @@ import time
 import cv2 as cv
 import os
 
+
 def runYOLODetection(args):
     # load my fish class labels that my YOLO model was trained on
     labelsPath = os.path.sep.join([args["fishv4"], "fish.names"])
@@ -14,8 +15,7 @@ def runYOLODetection(args):
 
     # initialize a list of colors to represent each possible class label
     np.random.seed(0)
-    COLORS = np.random.randint(0, 255, size=(len(LABELS), 3),
-        dtype="uint8")
+    COLORS = np.random.randint(0, 255, size=(len(LABELS), 3), dtype="uint8")
     print(COLORS)
     #COLORS = np.array([255, 0, 0], dtype="uint8")
 
@@ -40,10 +40,10 @@ def runYOLODetection(args):
     # construct a blob from the input image and then perform a forward
     # pass of the YOLO object detector, giving us our bounding boxes and
     # associated probabilities
-    # NOTE: (608, 608) is my YOLO input image size. However, using 
+    # NOTE: (608, 608) is my YOLO input image size. However, using
     # (416, 416) results in much accutate result. Pretty interesting.
     blob = cv.dnn.blobFromImage(image, 1 / 255.0, (416, 416),
-        swapRB=True, crop=False)
+                                swapRB=True, crop=False)
     net.setInput(blob)
     start = time.time()
     layerOutputs = net.forward(ln)
@@ -91,8 +91,7 @@ def runYOLODetection(args):
 
     # apply non-maxima suppression to suppress weark and overlapping bounding
     # boxes
-    idxs = cv.dnn.NMSBoxes(boxes, confidences, args["confidence"],
-        args["threshold"])
+    idxs = cv.dnn.NMSBoxes(boxes, confidences, args["confidence"], args["threshold"])
 
     # ensure at least one detection exists
     if len(idxs) > 0:
@@ -106,10 +105,10 @@ def runYOLODetection(args):
             color = [int(c) for c in COLORS[classIDs[i]]]
             cv.rectangle(image, (x, y), (x + w, y + h), color, 2)
             text = "{}: {:.4f}".format(LABELS[classIDs[i]], confidences[i])
-            cv.putText(image, text, (x, y - 5), cv.FONT_HERSHEY_SIMPLEX,
-                0.5, color, 2)
+            cv.putText(image, text, (x, y - 5), cv.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 
     return image
+
 
 def runYOLOBoundingBoxes(args):
     # load my fish class labels that my YOLO model was trained on
@@ -119,8 +118,7 @@ def runYOLOBoundingBoxes(args):
 
     # initialize a list of colors to represent each possible class label
     np.random.seed(0)
-    COLORS = np.random.randint(0, 255, size=(len(LABELS), 3),
-        dtype="uint8")
+    COLORS = np.random.randint(0, 255, size=(len(LABELS), 3), dtype="uint8")
     print(COLORS)
     #COLORS = np.array([255, 0, 0], dtype="uint8")
 
@@ -145,10 +143,10 @@ def runYOLOBoundingBoxes(args):
     # construct a blob from the input image and then perform a forward
     # pass of the YOLO object detector, giving us our bounding boxes and
     # associated probabilities
-    # NOTE: (608, 608) is my YOLO input image size. However, using 
+    # NOTE: (608, 608) is my YOLO input image size. However, using
     # (416, 416) results in much accutate result. Pretty interesting.
     blob = cv.dnn.blobFromImage(image, 1 / 255.0, (416, 416),
-        swapRB=True, crop=False)
+                                swapRB=True, crop=False)
     net.setInput(blob)
     start = time.time()
     layerOutputs = net.forward(ln)
@@ -196,10 +194,10 @@ def runYOLOBoundingBoxes(args):
 
     # apply non-maxima suppression to suppress weark and overlapping bounding
     # boxes
-    idxs = cv.dnn.NMSBoxes(boxes, confidences, args["confidence"],
-        args["threshold"])
+    idxs = cv.dnn.NMSBoxes(boxes, confidences, args["confidence"], args["threshold"])
 
     return image, boxes, idxs
+
 
 def runYOLOBoundingBoxes_streamlit(image, yolopath, _confidence, _threshold):
     # load my fish class labels that my YOLO model was trained on
@@ -208,8 +206,7 @@ def runYOLOBoundingBoxes_streamlit(image, yolopath, _confidence, _threshold):
 
     # initialize a list of colors to represent each possible class label
     np.random.seed(0)
-    COLORS = np.random.randint(0, 255, size=(len(LABELS), 3),
-        dtype="uint8")
+    COLORS = np.random.randint(0, 255, size=(len(LABELS), 3), dtype="uint8")
     print(COLORS)
     #COLORS = np.array([255, 0, 0], dtype="uint8")
 
@@ -231,10 +228,10 @@ def runYOLOBoundingBoxes_streamlit(image, yolopath, _confidence, _threshold):
     # construct a blob from the input image and then perform a forward
     # pass of the YOLO object detector, giving us our bounding boxes and
     # associated probabilities
-    # NOTE: (608, 608) is my YOLO input image size. However, using 
+    # NOTE: (608, 608) is my YOLO input image size. However, using
     # (416, 416) results in much accutate result. Pretty interesting.
     blob = cv.dnn.blobFromImage(image, 1 / 255.0, (416, 416),
-        swapRB=True, crop=False)
+                                swapRB=True, crop=False)
     net.setInput(blob)
     start = time.time()
     layerOutputs = net.forward(ln)
@@ -282,8 +279,7 @@ def runYOLOBoundingBoxes_streamlit(image, yolopath, _confidence, _threshold):
 
     # apply non-maxima suppression to suppress weark and overlapping bounding
     # boxes
-    idxs = cv.dnn.NMSBoxes(boxes, confidences, _confidence,
-        _threshold)
+    idxs = cv.dnn.NMSBoxes(boxes, confidences, _confidence, _threshold)
 
     return boxes, idxs
 
@@ -291,9 +287,12 @@ def runYOLOBoundingBoxes_streamlit(image, yolopath, _confidence, _threshold):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--image", required=True, help="path to input image")
-    ap.add_argument("-y", "--yolo", required=True, help="base path to YOLO directory")
-    ap.add_argument("-c", "--confidence", type=float, default=0.30, help="minimum probability to filter weak detections")
-    ap.add_argument("-t", "--threshold", type=float, default=0.40, help="threshold when applying non-maxima suppression")
+    ap.add_argument("-y", "--yolo", required=True,
+                    help="base path to YOLO directory")
+    ap.add_argument("-c", "--confidence", type=float, default=0.30,
+                    help="minimum probability to filter weak detections")
+    ap.add_argument("-t", "--threshold", type=float, default=0.40,
+                    help="threshold when applying non-maxima suppression")
     args = vars(ap.parse_args())
 
     image = runYOLODetection(args)
