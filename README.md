@@ -32,7 +32,7 @@ Locally:
 git clone https://github.com/DZPeru/fishv4
 cd fishv4
 pip3 install -r requirements.txt
-gdown --output ./fishv4/fish.weights --id 1tA77_b34p5iz_prf-hY_tP7uttjahSO9
+gdown --output ./fishv4/fish.weights --id 1QxJHz8Lh4CRE-4ksitJkLdpOpzGFkg-l
 ```
 
 ## Conda version
@@ -44,10 +44,10 @@ conda activate fishv4
 pip install -r requirements.txt
 ```
 
-Download the weights of the neural network to your local repository. Or do it manually, downloading from [Google Drive](https://drive.google.com/file/d/1tA77_b34p5iz_prf-hY_tP7uttjahSO9/view?usp=sharing).
+Download the weights of the neural network to your local repository. Or do it manually, downloading from [Google Drive](https://drive.google.com/file/d/1QxJHz8Lh4CRE-4ksitJkLdpOpzGFkg-l/view?usp=sharing).
 
 ```
-gdown --output ./fishv4/fish.weights --id 1tA77_b34p5iz_prf-hY_tP7uttjahSO9
+gdown --output ./fishv4/fish.weights --id 1QxJHz8Lh4CRE-4ksitJkLdpOpzGFkg-l
 ```
 
 ### 1. Command Line Approach
