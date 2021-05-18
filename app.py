@@ -22,10 +22,18 @@ def run():
     uploaded_img = st.file_uploader("Elige una imagen compatible", type=[
                                     'png', 'jpg', 'bmp', 'jpeg'])
     if uploaded_img is not None:
+
+        file_details = {"FileName": uploaded_img.name,
+                        "FileType": uploaded_img.type,
+                        "FileSize": uploaded_img.size}
+        st.write(file_details)
+
         file_bytes = np.asarray(bytearray(uploaded_img.read()), dtype=np.uint8)
         image = cv.imdecode(file_bytes, 1)
 
-        st.write("This is your uploaded image:")
+        dimensions=image.shape
+
+        st.text(f"This is your uploaded image:\n-height:{dimensions[0]}\n-width:{dimensions[1]}\n-channels:{dimensions[2]}")
         st.image(image, caption='Uploaded Image', channels="BGR", use_column_width=True)
 
         boxes, idxs = yolo.runYOLOBoundingBoxes_streamlit(image, yolopath, confidence, threshold)
@@ -33,6 +41,7 @@ def run():
                                         'threshold' : [threshold],
                                         'Encontrados (Boxes)': [len(boxes)],
                                         'Válidos (idxs)': [len(idxs)],}))
+        st.write(boxes)
         result_images = GrabCut.runGrabCut(image, boxes, idxs)
 
         st.write("Here appears the rectangles that the algorithm recognize:")
