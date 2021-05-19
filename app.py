@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+import os
+import stat
+import time
 import cv2 as cv
 import numpy as np
 import pandas as pd
@@ -18,6 +21,10 @@ def run():
     st.title("Fishv4[tiny] Demo 2020")
     st.text("Repo from: https://fishv4.herokuapp.com/")
     st.text("More info: https://github.com/DZPeru/fishv4")
+    fileStatsObj=os.stat('app.py')
+    modificationTime = time.ctime ( fileStatsObj [ stat.ST_MTIME ] )
+    last_update="Last Modified Time : "+ modificationTime 
+    st.text(last_update)
 
     uploaded_img = st.file_uploader("Elige una imagen compatible", type=[
                                     'png', 'jpg', 'bmp', 'jpeg'])
